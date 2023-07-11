@@ -316,7 +316,7 @@ void MainContext::FF13_OneTimeFixes() {
 	FF13_RemoveContinuousControllerScan();
 	FF13_FixScissorRect();
 	FF13_EnableControllerVibration();
-	FF13_SetFrameRateVariables();
+	// FF13_SetFrameRateVariables();
 	AdjustVertexData(*ff13_internal_res_w, *ff13_internal_res_h);
 
 	spdlog::info("Finished FF13 One Time Fixes");
