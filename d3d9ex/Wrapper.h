@@ -52,10 +52,10 @@ protected:
 		return false;
 	}
 
-	template<typename T>
-	void StoreAddress(T* dest, const char* name)
+	template<typename U>
+	void StoreAddress(U* dest, const char* name)
 	{
-		*dest = reinterpret_cast<T>(::GetProcAddress(m_module, name));
+		*dest = reinterpret_cast<U>(::GetProcAddress(m_module, name));
 	}
 
 private:

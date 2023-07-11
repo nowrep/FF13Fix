@@ -11,6 +11,8 @@
 #include "Context.h"
 #include "Wrapper.h"
 
+#define LSTR(x) L ## x
+
 MainContext context;
 
 Config::Config()
@@ -27,7 +29,7 @@ Config::Config()
 		ini.Reset();
 
 #define SETTING(_type, _func, _var, _section, _defaultval, _comment) \
-	ini.Set##_func(L#_section, L#_var, _defaultval, _comment)
+	ini.Set##_func(LSTR(#_section), LSTR(#_var), _defaultval, _comment)
 #include "Settings.h"
 #undef SETTING
 
@@ -38,7 +40,7 @@ Config::Config()
 	}
 
 #define SETTING(_type, _func, _var, _section, _defaultval, _comment) \
-	_var = ini.Get##_func(L#_section, L#_var)
+	_var = ini.Get##_func(LSTR(#_section), LSTR(#_var))
 #include "Settings.h"
 #undef SETTING
 }

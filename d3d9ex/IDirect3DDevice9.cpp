@@ -7,6 +7,10 @@
 
 #include <intrin.h>
 
+#ifdef __MINGW32__
+__CRT_UUID_DECL(hkIDirect3DDevice9, 0xDD98C5F4, 0x40E6, 0x43D9, 0xA0, 0xEA, 0x0C, 0x32, 0xAB, 0xDF, 0xDF, 0x9C);
+#endif
+
 HRESULT APIENTRY hkIDirect3DDevice9::QueryInterface(REFIID riid, void** ppvObj) {
 	spdlog::trace(__FUNCTION__);
 	if (ppvObj == nullptr) return E_POINTER;
@@ -121,6 +125,10 @@ HRESULT APIENTRY hkIDirect3DDevice9::CreateAdditionalSwapChain(D3DPRESENT_PARAME
 HRESULT APIENTRY hkIDirect3DDevice9::GetSwapChain(UINT iSwapChain, IDirect3DSwapChain9** pSwapChain) {
 	spdlog::trace(__FUNCTION__);
 
+#ifdef __MINGW32__
+#define __nop() asm("nop")
+#endif
+
 	// Steam Overlay crash fix
 	// Add some space, 16bytes should be more than enough
 	__nop();	__nop();	__nop();	__nop();
@@ -187,8 +195,9 @@ HRESULT APIENTRY hkIDirect3DDevice9::CreateCubeTexture(UINT EdgeLength, UINT Lev
 	return m_pWrapped->CreateCubeTexture(EdgeLength, Levels, Usage, Format, Pool, ppCubeTexture, pSharedHandle);
 }
 
+
 HRESULT APIENTRY hkIDirect3DDevice9::CreateVertexBuffer(UINT Length, DWORD Usage, DWORD FVF, D3DPOOL Pool, IDirect3DVertexBuffer9** ppVertexBuffer, HANDLE* pSharedHandle) {
-	spdlog::trace(__FUNCTION__" {} {} {} {} {} {}", Length, Usage, FVF, Pool, (void*)ppVertexBuffer, (void*)pSharedHandle);
+	spdlog::trace(std::string(__FUNCTION__) + " {} {} {} {} {} {}", Length, Usage, FVF, Pool, (void*)ppVertexBuffer, (void*)pSharedHandle);
 	return context.CreateVertexBuffer(m_pWrapped, Length, Usage, FVF, Pool, ppVertexBuffer, pSharedHandle);
 }
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <thread>
 class XInputManager
 {
 	float* vibration_address_high_frequency = NULL;

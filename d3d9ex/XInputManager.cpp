@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "XInputManager.h"
-#include <XInput.h>
+#include <xinput.h>
 
 XInputManager::XInputManager(uint8_t** base_controller_input_address_ptr, const float vibrationStrengthFactor)
 {

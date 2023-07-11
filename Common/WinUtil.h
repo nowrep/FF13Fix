@@ -2,12 +2,12 @@
 
 #include <string>
 #include <memory>
-#include "Windows.h"
+#include "windows.h"
 #include "tchar.h"
 #include "Types.h"
 #include "Defines.h"
 
-#include <Shlobj.h>
+#include <shlobj.h>
 #pragma comment(lib, "shell32.lib")
 
 template <typename T>

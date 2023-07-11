@@ -5,6 +5,10 @@
 #include "IDirect3D9.h"
 #include "IDirect3DDevice9.h"
 
+#ifdef __MINGW32__
+__CRT_UUID_DECL(hkIDirect3D9, 0x16760376, 0xB89E, 0x4CD9, 0x9C, 0xE1, 0x5B, 0x1C, 0x7A, 0xFC, 0x2E, 0x16);
+#endif
+
 HRESULT APIENTRY hkIDirect3D9::QueryInterface(REFIID riid, void** ppvObj) {
 	spdlog::info(__FUNCTION__);
 	if (ppvObj == nullptr)

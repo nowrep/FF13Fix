@@ -10,7 +10,7 @@ namespace cinterface
 
 	HRESULT STDMETHODCALLTYPE HookLock(IDirect3DVertexBuffer9* This, UINT OffsetToLock, UINT SizeToLock, void** ppbData, DWORD Flags)
 	{
-		spdlog::trace(__FUNCTION__" {}", SizeToLock);
+		spdlog::trace(std::string(__FUNCTION__) + " {}", SizeToLock);
 		if (SizeToLock == 358400)
 			Flags = D3DLOCK_DISCARD;
 		return TrueLock(This, OffsetToLock, SizeToLock, ppbData, Flags);

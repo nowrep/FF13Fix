@@ -1,3 +1,4 @@
+LIBRARY D3D9.DLL
 EXPORTS
 Direct3DCreate9=_Direct3DCreate9 @30
 Direct3DCreate9Ex=_Direct3DCreate9Ex @31
